@@ -14,7 +14,7 @@ def get_ip(request):
 
 def index(request):  
     posts = Post.objects.filter(published_at__lte=timezone.now()).select_related("author")
-    logger.debug("Got %d posts", len(posts))
+    # logger.debug("Got %d posts", len(posts))
     return render(request, "blog/index.html", {"posts": posts})
     
 def post_detail(request, slug):
@@ -35,7 +35,7 @@ def post_detail(request, slug):
             comment_form = CommentForm()
     else:
         comment_form = None
-
+    print("Reached here successfully")
     return render(
         request, "blog/post-detail.html", {"post": post, "comment_form": comment_form}
     )
